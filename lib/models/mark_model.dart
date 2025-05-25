@@ -5,6 +5,7 @@ class Mark {
   int internal2;
   int internal3;
   int external;
+  int attendance; // Added attendance field
 
   Mark({
     required this.studentUsn,
@@ -13,8 +14,8 @@ class Mark {
     required this.internal2,
     required this.internal3,
     required this.external,
+    required this.attendance, // Added attendance parameter
   });
-
   Map<String, dynamic> toJson() {
     return {
       'studentUsn': studentUsn,
@@ -23,17 +24,18 @@ class Mark {
       'internal2': internal2,
       'internal3': internal3,
       'external': external,
+      'attendance': attendance, // Added attendance to JSON
     };
   }
 
   factory Mark.fromJson(Map<String, dynamic> json) {
     return Mark(
       studentUsn: json['studentUsn'],
-      courseId: json['courseId'],
-      internal1: json['internal1'],
+      courseId: json['courseId'],      internal1: json['internal1'],
       internal2: json['internal2'],
       internal3: json['internal3'],
       external: json['external'],
+      attendance: json['attendance'] ?? 0, // Added attendance from JSON with default value 0
     );
   }
 }

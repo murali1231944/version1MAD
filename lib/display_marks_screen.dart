@@ -30,12 +30,12 @@ class _DisplayMarksScreenState extends State<DisplayMarksScreen> {
 
       if (courseSnapshot.exists) {
         final courseData = courseSnapshot.data() as Map<String, dynamic>;
-        setState(() {
-          _maxMarks = {
+        setState(() {          _maxMarks = {
             'internal1': courseData['maxInternal1']?.toDouble() ?? 100.0,
             'internal2': courseData['maxInternal2']?.toDouble() ?? 100.0,
             'internal3': courseData['maxInternal3']?.toDouble() ?? 100.0,
             'external': courseData['maxExternal']?.toDouble() ?? 100.0,
+            'attendance': 100.0, // Maximum attendance percentage
           };
         });
       }
@@ -46,20 +46,20 @@ class _DisplayMarksScreenState extends State<DisplayMarksScreen> {
 
       if (marksSnapshot.exists) {
         final marksData = marksSnapshot.data() as Map<String, dynamic>;
-        setState(() {
-          _marksControllers = {
+        setState(() {          _marksControllers = {
             'internal1': TextEditingController(text: marksData['internal1'].toString()),
             'internal2': TextEditingController(text: marksData['internal2'].toString()),
             'internal3': TextEditingController(text: marksData['internal3'].toString()),
             'external': TextEditingController(text: marksData['external'].toString()),
+            'attendance': TextEditingController(text: marksData['attendance']?.toString() ?? '0'),
           };
         });
       } else {
-        await marksDocRef.set({
-          'internal1': 0.0,
+        await marksDocRef.set({          'internal1': 0.0,
           'internal2': 0.0,
           'internal3': 0.0,
           'external': 0.0,
+          'attendance': 0.0,
         });
         setState(() {
           _marksControllers = {
@@ -67,6 +67,7 @@ class _DisplayMarksScreenState extends State<DisplayMarksScreen> {
             'internal2': TextEditingController(text: '0'),
             'internal3': TextEditingController(text: '0'),
             'external': TextEditingController(text: '0'),
+            'attendance': TextEditingController(text: '0'),
           };
         });
       }

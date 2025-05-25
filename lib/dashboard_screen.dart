@@ -10,9 +10,10 @@ class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    String teacherId = FirebaseAuth.instance.currentUser!.uid;
-    final theme = Theme.of(context);
+  Widget build(BuildContext context) {    final theme = Theme.of(context);
+    
+    // Get all default teachers' IDs to show their courses
+    final defaultTeacherIds = defaultTeachers.map((t) => t.teacherId).toList();
 
     return GradientScaffold(
       child: Scaffold(
@@ -36,10 +37,9 @@ class DashboardScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
+        body: StreamBuilder<QuerySnapshot>(          stream: FirebaseFirestore.instance
               .collection('courses')
-              .where('teacherId', isEqualTo: teacherId)
+              .where('teacherId', whereIn: defaultTeacherIds)
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
