@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "149691930473",
+    "project_id": "student-project-group",
+    "storage_bucket": "student-project-group.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:149691930473:android:aa3a577fb820897c2bcff8",
+        "android_client_info": {
+          "package_name": "com.example.student_marks_management"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaF6q3GFWq1PRn0uDutw716UvuroLFys4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
